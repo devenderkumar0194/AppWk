@@ -1,0 +1,56 @@
+.prod-card {
+    height: 400px;
+    padding: 5px;
+}
+
+.prod-card .prod-inner{
+    
+    border: solid 1px;
+    border-radius: 10px;
+}
+
+.prod-img {
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.prod-img img {
+    objectFit: cover;  
+
+}
+
+.prod-details {
+    text-align:  center;
+}
+
+form {
+    width: 50%;
+}
+form label {
+    float: left;
+    margin-top: 2px;
+}
+
+form .form-group div {
+    float: left;
+    margin-bottom: 2px;
+}
+
+form .form-group {
+    min-height : 100px;
+}
+
+.nav-bar {
+
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav-bar li {
+    margin-left: 2px;   
+    margin-right: 2px;
+}
+
