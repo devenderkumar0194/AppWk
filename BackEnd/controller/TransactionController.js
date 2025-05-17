@@ -30,13 +30,16 @@ const addTrns = async (req, res) => {
 
     await Transaction.create({ desc : desc, credit : credit, debit : debit, balence : balence });
 
-    // const products = await Product.find().sort({ createdAt: -1 });
     return res.status(200).json({ status: "success" });
 }
 
 const trnsList = async (req, res) => {
     
-    const trns = await Transaction.find().sort({ createdAt: -1 });
+    const page = parseInt(req.query.page) || 1;      
+    const limit = parseInt(req.query.limit) || 15;  
+    const skip = (page - 1) * limit;
+
+    const trns = await Transaction.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
     return res.status(200).json({ status: "success", data : trns  });
 
 }
