@@ -10,8 +10,8 @@ const AddTrans = () => {
 
     const initialValues = {
         desc : '',
-        credit: 0,
-        debit: 0
+        type: "",
+        amount: ""
     };
     
         const formik = useFormik({
@@ -22,22 +22,34 @@ const AddTrans = () => {
             .min(3, 'Must be at least 3 characters')
             .required('description is required'),
             
-            credit: Yup.number()
-            .typeError('credit must be a number')
-              .min(0, 'credit must be 0 or more'),
+            type: Yup.string().required('Type is required'),
 
-            debit: Yup.number()
-            .typeError('debit must be a number')
-              .min(0, 'credit must be 0 or more')
-
+            amount: Yup.number()
+                .required('amount is required')
+    
+            .typeError('amount must be a number')
+              .min(1, 'amount must be 1 or more')
         }),
         onSubmit: async (values) => {
-            const res = await Axios_API.addTrns(values);
+         
+            const object = {
+                "desc" : values.desc,
+                "credit" : values.type === "1" ? values.amount : 0,
+                "debit" : values.type === "2" ? values.amount : 0,   
+            }
+
+            const res = await Axios_API.addTrns(object);
             if(res.status === "success"){
                 navigate('/');
             }
         }
       });
+
+      const CancelTransaction = () => {
+        
+        formik.resetForm();
+        
+      }
 
     return <>
 
@@ -46,19 +58,23 @@ const AddTrans = () => {
                     
                     <form onSubmit={formik.handleSubmit}>
                         <div className='row'>
-                            <div className='col-4'><label>Credit</label></div>
+                            <div className='col-4'><label>Transaction Type</label></div>
                             <div className='col-8'>
                                 <div className='form-group'>
-                                    <input
-                                    className='form-control'
-                                    type="text"
-                                    name="credit"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.credit}
-                                    />
-                                    {formik.touched.credit && formik.errors.credit && (
-                                    <div style={{ color: 'red' }}>{formik.errors.credit}</div>
+
+                                    <select className='form-control' name='type'
+                                        value={formik.values.type}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                    >
+                                        <option value="">Select Type</option>
+                                        <option value="1">Credit</option>
+                                        <option value="2">Debit</option>
+                                    </select>
+
+                                    
+                                    {formik.touched.type && formik.errors.type && (
+                                    <div style={{ color: 'red' }}>{formik.errors.type}</div>
                                     )}
                                 </div>
                                 
@@ -66,19 +82,19 @@ const AddTrans = () => {
                         </div>
                         <div className='row'>
 
-                            <div className='col-4'><label>Debit</label></div>
+                            <div className='col-4'><label>Amount</label></div>
                             <div className='col-8'>
                                 <div className='form-group'>
                                     <input
                                     className='form-control'
                                     type="text"
-                                    name="debit"
+                                    name="amount"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.debit}
+                                    value={formik.values.amount}
                                     />
-                                    {formik.touched.debit && formik.errors.debit && (
-                                    <div style={{ color: 'red' }}>{formik.errors.debit}</div>
+                                    {formik.touched.amount && formik.errors.amount && (
+                                    <div style={{ color: 'red' }}>{formik.errors.amount}</div>
                                     )}
                                 
                                 
@@ -109,7 +125,10 @@ const AddTrans = () => {
                         <div className='row'>
 
                             <div className='from-group add-box'>
-                                <button className='btn btn-primary' type="submit">Add Transaction</button>
+                                <button className='btn btn-primary mx-2' type="submit">Add Transaction</button>
+                            
+                                <a className='btn btn-danger' onClick={CancelTransaction}>Cancel</a>
+                            
                             </div>
                         
 
