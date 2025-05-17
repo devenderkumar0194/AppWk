@@ -24,3 +24,22 @@
 .add-trnx .add-box {
     text-align: right;
 }
+
+
+.tx-list{
+    border: solid 5px;
+    margin-top: 40px;
+    /* padding-top: 15px; */
+    font-family: auto;
+    width: 70%;
+}
+
+.tx-list .row {
+    padding-top: 10px;
+    text-align: left;
+}
+
+.tx-list .row .col-4 {
+    text-align: right;
+}
+

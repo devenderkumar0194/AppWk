@@ -24,18 +24,20 @@ const TransList = () => {
 
 
     return <>
-
-        <div className="container ">
-            <h3>Transaction List</h3>
-            <Link to="/add-trans" className="btn btn-primary">Add</Link>
+        <div className="container tx-list">
+            <div className="row">
+                <div className="col-8"><h3>Transaction List</h3></div>
+                <div className="col-4"><Link to="/add-trans" className="btn btn-primary">Add</Link></div>
+            </div>
+            
             <table className="table">
             <thead>
                 <tr>
                 <th scope="col">Date</th>
                 <th scope="col">Description</th>
-                <th scope="col">credit</th>
-                <th scope="col">debit</th>
-                <th scope="col">balence</th>
+                <th scope="col">Credit</th>
+                <th scope="col">Debit</th>
+                <th scope="col">Balence</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,8 +47,8 @@ const TransList = () => {
                      <tr>
                         <th scope="row">{new Date(trn.createdAt).toISOString().split('T')[0] }</th>
                         <td>{trn.desc}</td>
-                        <td>{trn.credit}</td>
-                        <td>{trn.debit}</td>
+                        <td>{trn.credit?trn.credit:""}</td>
+                        <td>{trn.debit?trn.debit:""}</td>
                         <td>{trn.balence}</td>
                     </tr>
                 ))}                

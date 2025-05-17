@@ -45,23 +45,18 @@ const AddTrans = () => {
         }
       });
 
-      const CancelTransaction = () => {
-        
+      const CancelTransaction = () => {  
         formik.resetForm();
-        
       }
 
     return <>
-
                 <div className='container add-trnx'>
-                    <div className='row'><h3>New Transaction</h3></div>
-                    
+                    <div className='row'><h3>New Transaction</h3></div>       
                     <form onSubmit={formik.handleSubmit}>
                         <div className='row'>
                             <div className='col-4'><label>Transaction Type</label></div>
                             <div className='col-8'>
                                 <div className='form-group'>
-
                                     <select className='form-control' name='type'
                                         value={formik.values.type}
                                         onChange={formik.handleChange}
@@ -71,8 +66,6 @@ const AddTrans = () => {
                                         <option value="1">Credit</option>
                                         <option value="2">Debit</option>
                                     </select>
-
-                                    
                                     {formik.touched.type && formik.errors.type && (
                                     <div style={{ color: 'red' }}>{formik.errors.type}</div>
                                     )}
@@ -96,8 +89,6 @@ const AddTrans = () => {
                                     {formik.touched.amount && formik.errors.amount && (
                                     <div style={{ color: 'red' }}>{formik.errors.amount}</div>
                                     )}
-                                
-                                
                                 </div>  
                             </div>
                         </div>
@@ -126,32 +117,11 @@ const AddTrans = () => {
 
                             <div className='from-group add-box'>
                                 <button className='btn btn-primary mx-2' type="submit">Add Transaction</button>
-                            
                                 <a className='btn btn-danger' onClick={CancelTransaction}>Cancel</a>
-                            
                             </div>
-                        
-
                         </div>
-                    
-
-
                     </form>
-
-                    
-
                 </div>
-
-
-                
-
-
-                    
-
-
-
-
-
     </>; 
 }
 
