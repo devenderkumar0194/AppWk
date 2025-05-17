@@ -20,15 +20,15 @@ const AddTrans = () => {
         validationSchema: Yup.object({
           desc: Yup.string()
             .min(3, 'Must be at least 3 characters')
-            .required('description is required'),
+            .required('Description is required'),
             
             type: Yup.string().required('Type is required'),
 
             amount: Yup.number()
-                .required('amount is required')
+                .required('Amount is required')
     
-            .typeError('amount must be a number')
-              .min(1, 'amount must be 1 or more')
+            .typeError('Amount must be a number')
+              .min(1, 'Amount must be 1 or more')
         }),
         onSubmit: async (values) => {
          
@@ -79,6 +79,7 @@ const AddTrans = () => {
                             <div className='col-8'>
                                 <div className='form-group'>
                                     <input
+                                    autoComplete='off'
                                     className='form-control'
                                     type="text"
                                     name="amount"
@@ -94,17 +95,20 @@ const AddTrans = () => {
                         </div>
                         <div className='row'>
 
-                            <div className='col-4'><label>Description:</label></div>
+                            <div className='col-4'><label>Description</label></div>
                             <div className='col-8'>
                                     <div className='form-group'>
-                                        <input
+
+                                        <textarea
+                                            autoComplete='off'
                                             className='form-control'
-                                            type="text"
                                             name="desc"
+                                            rows="4"
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                             value={formik.values.desc}
                                             />
+
                                             {formik.touched.desc && formik.errors.desc && (
                                             <div style={{ color: 'red' }}>{formik.errors.desc}</div>
                                             )}
