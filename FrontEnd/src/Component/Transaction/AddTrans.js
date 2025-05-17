@@ -41,69 +41,90 @@ const AddTrans = () => {
 
     return <>
 
-                <div className='container'>
-                    <h3>New Transaction</h3>
+                <div className='container add-trnx'>
+                    <div className='row'><h3>New Transaction</h3></div>
+                    
+                    <form onSubmit={formik.handleSubmit}>
+                        <div className='row'>
+                            <div className='col-4'><label>Credit</label></div>
+                            <div className='col-8'>
+                                <div className='form-group'>
+                                    <input
+                                    className='form-control'
+                                    type="text"
+                                    name="credit"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.credit}
+                                    />
+                                    {formik.touched.credit && formik.errors.credit && (
+                                    <div style={{ color: 'red' }}>{formik.errors.credit}</div>
+                                    )}
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div className='row'>
 
-                    <form onSubmit={formik.handleSubmit}> 
+                            <div className='col-4'><label>Debit</label></div>
+                            <div className='col-8'>
+                                <div className='form-group'>
+                                    <input
+                                    className='form-control'
+                                    type="text"
+                                    name="debit"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.debit}
+                                    />
+                                    {formik.touched.debit && formik.errors.debit && (
+                                    <div style={{ color: 'red' }}>{formik.errors.debit}</div>
+                                    )}
+                                
+                                
+                                </div>  
+                            </div>
+                        </div>
+                        <div className='row'>
+
+                            <div className='col-4'><label>Description:</label></div>
+                            <div className='col-8'>
+                                    <div className='form-group'>
+                                        <input
+                                            className='form-control'
+                                            type="text"
+                                            name="desc"
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.desc}
+                                            />
+                                            {formik.touched.desc && formik.errors.desc && (
+                                            <div style={{ color: 'red' }}>{formik.errors.desc}</div>
+                                            )}
+
+                                    </div>
+                            </div>
+
+                        </div>
+                        <div className='row'>
+
+                            <div className='from-group add-box'>
+                                <button className='btn btn-primary' type="submit">Add Transaction</button>
+                            </div>
                         
-                        <div className='form-group'>
-                            <label>credit:</label><br />
-                            <input
-                            className='form-control'
-                            type="text"
-                            name="credit"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.credit}
-                            />
-                            {formik.touched.credit && formik.errors.credit && (
-                            <div style={{ color: 'red' }}>{formik.errors.credit}</div>
-                            )}
+
                         </div>
+                    
 
 
-                        <div className='form-group'>
-                            <label>debit:</label><br />
-                            <input
-                            className='form-control'
-                            type="text"
-                            name="debit"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.debit}
-                            />
-                            {formik.touched.debit && formik.errors.debit && (
-                            <div style={{ color: 'red' }}>{formik.errors.debit}</div>
-                            )}
-                        </div>
-
- <div className='form-group'>
-                            <label>Description:</label><br />
-                            <input
-                            className='form-control'
-                            type="text"
-                            name="desc"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.desc}
-                            />
-                            {formik.touched.desc && formik.errors.desc && (
-                            <div style={{ color: 'red' }}>{formik.errors.desc}</div>
-                            )}
-                        </div>
-
-
-
-
-
-
-                        <div className='from-group'>
-                            <button className='btn btn-primary' type="submit">Submit</button>
-                        </div>
-                        
                     </form>
 
+                    
+
                 </div>
+
+
+                
 
 
                     
