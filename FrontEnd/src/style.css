@@ -43,3 +43,32 @@
     text-align: right;
 }
 
+
+@media (max-width: 600px) {
+  .container {
+    width: 80%;
+  }
+
+  .col-4 {
+    width: 100%;
+  }
+  .col-8 {
+    width: 100%;
+  }
+
+  
+    .add-trnx .add-box {
+        text-align: center;
+    }
+
+    .add-trnx .add-box button {
+        margin-bottom: 3px;
+    }
+
+    .add-trnx .add-box a {
+        margin-bottom: 3px;
+    }
+
+
+}
+
