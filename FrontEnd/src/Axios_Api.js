@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import Cookies from 'js-cookie';
 
-const baseURL = 'http://localhost:5000/api'; 
+const baseURL = process.env.REACT_APP_BACK_END_URL+'/api'; 
 
 const getTrns = async () => {
     
