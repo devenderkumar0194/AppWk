@@ -31,7 +31,7 @@ const TransList = () => {
             </div>
 
             <div className="row">
-                <table className="table">
+                <table className="table table-responsive">
                     <thead>
                         <tr>
                         <th scope="col">Date</th>
