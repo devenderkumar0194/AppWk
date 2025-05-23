@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import AXios_Api from "../../Axios_Api";
 import { useEffect, useState } from "react";
 import Row from "./Row";
+import Head from "../Home/Head";
 
 
 const TransList = () => {
@@ -24,6 +25,8 @@ const TransList = () => {
 
 
     return <>
+
+        <Head title="Transaction List" subTitle="All your credits and debits, clearly organized and always accessible."/>
         <div className="container tx-list">
             <div className="row">
                 <div className="col-8"><h3>Transaction List</h3></div>

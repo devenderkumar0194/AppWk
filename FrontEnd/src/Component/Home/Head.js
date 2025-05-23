@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Head = (props) => {
+    
     return <>
         <header>
             <div className="nav">
