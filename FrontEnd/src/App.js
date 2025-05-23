@@ -23,7 +23,6 @@ function App() {
     <Router>
           <div className="App">
               <Routes>      
-
                
                <Route path="/" element={<Wellcome/>} />   
                <Route path="/login" element={<Login/>} />   
