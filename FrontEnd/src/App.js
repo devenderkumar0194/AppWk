@@ -7,11 +7,14 @@ import StopWatch from './Component/StopWatch';
 import Wellcome from './Component/Home/Wellcome';
 import Login from './Component/Home/Login';
 import Register from './Component/Home/Register';
-
+import AxiosAPI from './Axios_Api';
 
 
 const ProtectedRoute = () => {
   
+  const user = AxiosAPI.getUserDetails();
+  console.log(user);
+
   var isAuthenticated = true;
   return true ? <Outlet/> : <Navigate to="/" replace/>;
 
@@ -28,9 +31,9 @@ function App() {
                <Route path="/login" element={<Login/>} />   
                <Route path="/register" element={<Register/>} />   
                
-                <Route path="/trns-list" element={<TransList/>} />   
-
+        
                 <Route element={<ProtectedRoute />}>
+                  <Route path="/trns-list" element={<TransList/>} />   
                   <Route path="/add-trans" element={<AddTrans/>} />   
                   <Route path="/stop-watch" element={<StopWatch/>} />
                 </Route>

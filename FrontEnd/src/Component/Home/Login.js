@@ -3,9 +3,12 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Axios_API from '../../Axios_Api';
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import Cookies from 'js-cookie';
 
 const Login = () => {
 
+    const [error , setError] = useState("");
     const navigate = useNavigate();
 
     const initialValues = {
@@ -22,23 +25,23 @@ const Login = () => {
             .min(3, 'Must be at least 3 characters')
             .required('Email is required'),
            password: Yup.string()
-            .min(6, 'Password must be at least 6 characters')
+            .min(5, 'Password must be at least 5 characters')
             .required('Password is required'),
         }),
         onSubmit: async (values) => {
-
-            console.log('===>>>>',values);
-         
-            // const object = {
-            //     "desc" : values.desc,
-            //     "credit" : values.type === "1" ? values.amount : 0,
-            //     "debit" : values.type === "2" ? values.amount : 0,   
-            // }
-
-            // const res = await Axios_API.addTrns(object);
-            // if(res.status === "success"){
+            
+            const res = await Axios_API.login(values.email, values.password);
+            if(res.status === 200){
+                const token = res.data;
+                Cookies.set('token', token, { expires: 1 });
+                
                 navigate('/trns-list');
-            // }
+            }else {
+                setError(res.message);
+                setTimeout(function(){
+                    setError("");
+                }, 5000);
+            }
         }
       });
 
@@ -53,8 +56,17 @@ const Login = () => {
 
             <section>
             <div className="box-100">
+
+                
             <form onSubmit={formik.handleSubmit}>
+                
+                <div className="form-group">
+                    <div className="error">{error}</div>
+                </div>
+
+
                 <div class="form-group">
+
                     <label for="email">Email Address</label>
                     <input autoComplete="off" type="email" id="email" placeholder="you@example.com" 
                         onChange={formik.handleChange}
