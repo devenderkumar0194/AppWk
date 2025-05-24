@@ -11,15 +11,15 @@ apiRouter.post("/login", UserController.login);
 apiRouter.get("/logout", UserController.logout);
 
 
-apiRouter.post("/add-trns", TransactionController.addTrns);
-apiRouter.get("/trns-list", TransactionController.trnsList);
-
-
-
 // auth routes 
 // apiAuthRouter.get("/dashboard", UserController.dashboard);
 // apiAuthRouter.get("/about-us", UserController.aboutUs);
 apiAuthRouter.get("/user-detiails", UserController.userUetiails);
+
+apiAuthRouter.post("/add-trns", TransactionController.addTrns);
+apiAuthRouter.get("/trns-list", TransactionController.trnsList);
+
+
 // apiAuthRouter.post("/update-profile", upload.single('image') ,UserController.updateProfile);
 
 apiRouter.use('/', userMiddleware.authCheck ,apiAuthRouter);
