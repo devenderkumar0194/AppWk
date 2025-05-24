@@ -8,29 +8,48 @@ import Wellcome from './Component/Home/Wellcome';
 import Login from './Component/Home/Login';
 import Register from './Component/Home/Register';
 import AxiosAPI from './Axios_Api';
+import { useEffect, useState } from 'react';
 
 
 const ProtectedRoute = () => {
+
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(()=> {
+    const checkAuth = async () => {
+      const user = await AxiosAPI.getUserDetails();
+      if(user.status === 200){
+        setIsAuthenticated(true);
+      }else{
+        setIsAuthenticated(false);
+      }
+    }
+    checkAuth();
+
+  }, []);
   
-  const user = AxiosAPI.getUserDetails();
-  console.log(user);
+  // if(user.status === "error"){
+  //   console.log("===>>>>>>>>");
+  //     var isAuthenticated = false;
+  // }else {
+  //   console.log(user);
+  // }
 
-  var isAuthenticated = true;
-  return true ? <Outlet/> : <Navigate to="/" replace/>;
-
+  if(isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }else{
+    return isAuthenticated ? <Outlet/> : <Navigate to="/" replace/>;
+  }
 }
 
 function App() {
-
   return (
     <Router>
           <div className="App">
               <Routes>      
-               
                <Route path="/" element={<Wellcome/>} />   
                <Route path="/login" element={<Login/>} />   
                <Route path="/register" element={<Register/>} />   
-               
         
                 <Route element={<ProtectedRoute />}>
                   <Route path="/trns-list" element={<TransList/>} />   

@@ -36,24 +36,21 @@ const login = async (email, password) => {
 const getUserDetails  = async () => {
     
     const token = Cookies.get('token');
-    console.log(token);
+    try {
 
-    return "fff";
-    // try {
+        const res = await axios.get(baseURL+'/user-detiails', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+            });
 
-    //     const res = await axios.get(baseURL+'/user-detiails', {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`
-    //         }
-    //         });
+        return res.data;
 
-    //     return res.data;
-
-    // } catch (err) {
-    //     if(err.response.status === 409){
-    //         return err.response.data;
-    //     }
-    // }
+    } catch (err) {
+        if(err.response.status === 409){
+            return err.response.data;
+        }
+    }
 
 }
 
