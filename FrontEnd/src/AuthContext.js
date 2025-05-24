@@ -18,17 +18,12 @@ export const AuthProvider = ({ children }) => {
        const res =  await Axios_Api.getUserDetails();
 
        if(res.status === 200){
-          console.log("111");
-
           setUser(res.data);
           setIsAuthenticated(true);
        }else{
-
           setUser({});
           setIsAuthenticated(false);
-
        }
-
        setIsloagin(false);
     }
 

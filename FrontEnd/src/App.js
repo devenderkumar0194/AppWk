@@ -27,14 +27,7 @@ const ProtectedRoute = () => {
     checkAuth();
 
   }, []);
-  
-  // if(user.status === "error"){
-  //   console.log("===>>>>>>>>");
-  //     var isAuthenticated = false;
-  // }else {
-  //   console.log(user);
-  // }
-
+ 
   if(isAuthenticated === null) {
     return <div>Loading...</div>;
   }else{
@@ -42,15 +35,44 @@ const ProtectedRoute = () => {
   }
 }
 
+const PublicRoute = () => {
+
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(()=> {
+    const checkAuth = async () => {
+      const user = await AxiosAPI.getUserDetails();
+      if(user.status === 200){
+        setIsAuthenticated(true);
+      }else{
+        setIsAuthenticated(false);
+      }
+    }
+    checkAuth();
+
+  }, []);
+ 
+  if(isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }else{
+    return !isAuthenticated ? <Outlet/> : <Navigate to="/trns-list" replace/>;
+  }
+}
+
+
+
 function App() {
   return (
     <Router>
           <div className="App">
               <Routes>      
                <Route path="/" element={<Wellcome/>} />   
-               <Route path="/login" element={<Login/>} />   
-               <Route path="/register" element={<Register/>} />   
-        
+
+                <Route element={<PublicRoute />}>
+                  <Route path="/login" element={<Login/>} />   
+                  <Route path="/register" element={<Register/>} /> 
+                </Route>
+
                 <Route element={<ProtectedRoute />}>
                   <Route path="/trns-list" element={<TransList/>} />   
                   <Route path="/add-trans" element={<AddTrans/>} />   
