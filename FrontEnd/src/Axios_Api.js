@@ -90,14 +90,14 @@ const logout = async () => {
 
 
 
-const getTrns = async (page = 1, search) => {
+const getTrns = async (page = 1, search, limit) => {
     
     const token = Cookies.get('token');
     try {
 
         var obj = {
             page : page,
-            limit : 10,
+            limit : limit,
         }
 
         if(search){
