@@ -42,15 +42,58 @@ const addTrns = async (req, res) => {
 
 const trnsList = async (req, res) => {
     const user = req.user ? req.user : [];
+    const search = req.body.search ? req.body.search : "";
+    
+    // const startDate = '2024-01-01';
+    // const endDate = '2025-12-31';
+
+    const startDate = req.body.startDate ? req.body.startDate : "";
+    const endDate = req.body.endDate ? req.body.endDate : "";
+
 
     const page = parseInt(req.query.page) || 1;      
     const limit = parseInt(req.query.limit) || 15;  
     const skip = (page - 1) * limit;
 
-    const totalTrns = await Transaction.find({user : user.id}).countDocuments();
-    const lastPage = Math.ceil( totalTrns/limit);
+    var conditonObj = {
+        user : user.id
+    };
+
+    if(search){
+        conditonObj.desc = { $regex : search , $options : "i" };
+    }
+
+    if(startDate && endDate){
+        conditonObj.createdAt = {
+            $gte: new Date(startDate),
+            $lte: new Date(endDate)
+        }; 
+    }
+
     
-    const trns = await Transaction.find({user : user.id}).sort({ createdAt: -1 }).skip(skip).limit(limit);
+    const totalTrns = await Transaction.find(conditonObj).countDocuments();
+    const lastPage = Math.ceil( totalTrns/limit);
+
+    // const trns = await Transaction.find({user : user.id}).sort({ createdAt: -1 }).skip(skip).limit(limit);
+    const trns = await Transaction.find(conditonObj)
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+    
+    
+//     const trns = await Transaction.find({
+//   user: user.id,
+//   createdAt: {
+//     $gte: new Date(startDate),
+//     $lte: new Date(endDate)
+//   }
+// })
+
+
+
+
+
+
     return res.status(200).json({ status: "success", lastPage : lastPage, data : trns  });
 
 }
