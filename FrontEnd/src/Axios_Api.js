@@ -104,6 +104,9 @@ const getTrns = async (page = 1, search) => {
             obj.search = search;
         }
 
+        // obj.startDate =  "2024-12-31";
+        // obj.endDate = "2024-12-31";
+
         const res = await axios.get(baseURL+'/trns-list',  {
             params : obj,
             headers: {
