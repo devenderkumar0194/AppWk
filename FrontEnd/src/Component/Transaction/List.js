@@ -25,34 +25,50 @@ const TransList = () => {
 
 
     return <>
-
         <Head title="Transaction List" subTitle="All your credits and debits, clearly organized and always accessible."/>
-        <div className="container tx-list">
-            <div className="row">
-                <div className="col-8"><h3>Transaction List</h3></div>
-                <div className="col-4"><Link to="/add-trans" className="btn btn-primary">Add Transaction </Link></div>
-            </div>
-
-            <div className="row">
-                <table className="table table-responsive">
+        
+        <main>
+            <section>
+                <div class="container">
+                    <div class="header">
+                        <Link to="/add-trans" class="add-button">Add New Transaction</Link>            
+                        <div class="search-box">
+                            <input type="text" placeholder="Search description..."/>
+                        </div>
+                    </div>
+                    
+                    <table>
                     <thead>
                         <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Credit</th>
-                        <th scope="col">Debit</th>
-                        <th scope="col">Balance</th>
+                        <th>Date</th>
+                        <th>Credit</th>
+                        <th>Debit</th>
+                        <th>Description</th>
+                        <th>Balance</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {trns.map((trn, index) => (
                             <Row key={index} trn={trn} />
-                        ))}             
+                        ))}
+
                     </tbody>
-                </table>
-            </div>
-        </div>
+                    </table>
+
+                    <div class="pagination">
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>Next</button>
+                    </div>
+                    </div>
+
+
+
+            </section>
+
+        </main>
     </>;
 
 }

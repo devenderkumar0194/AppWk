@@ -24,7 +24,7 @@ const Head = (props) => {
                 </div> }
 
                 { isAuthenticated && <div className="">
-
+                    <span to="/" >{user.name? user.name : ""}</span>
                     <button onClick={logout}>Logout</button>
                 </div> }
 

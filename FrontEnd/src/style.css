@@ -115,6 +115,10 @@
       color: #10b981;
     }
 
+    .wel-btn a {
+      margin-left: 2px;
+      margin-right: 2px;
+    }
     .center-text {
       text-align: center;
     }
@@ -139,6 +143,26 @@
     }
 
 
+    .cta a {
+      background-color: #6366f1;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .cta a:hover {
+      background-color: #4f46e5;
+    }
+
+
+
+
+
     .form-group {
       margin-bottom: 20px;
     }
@@ -149,6 +173,10 @@
       color: #374151;
       font-weight: 500;
       text-align: left;
+    }
+
+    a {
+      text-decoration: none;
     }
 
     .form-group .error {
@@ -200,6 +228,93 @@
     }
 
 
+     .container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+
+
+      .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    
+    .search-box input {
+      padding: 8px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .add-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table th, table td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #f0f0f0;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .pagination button {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .pagination button.active {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .pagination button:hover {
+      background-color: #e0e0e0;
+    }
+
+
+
+
+
 
     @media (max-width: 768px) {
       .row {
@@ -242,27 +357,6 @@
 
 .add-trnx .add-box {
     text-align: right;
-}
-
-
-.tx-list{
-    border: solid 5px;
-    margin-top: 40px;
-    /* padding-top: 15px; */
-    font-family: auto;
-    width: 70%;
-}
-
-.tx-list .row {
-    padding-top: 10px;
-    text-align: left;
-}
-
-.tx-list .row .col-4 {
-    text-align: right;
-}
-.nav-right {
-    /* text-align:  right; */
 }
 
 .rrr {

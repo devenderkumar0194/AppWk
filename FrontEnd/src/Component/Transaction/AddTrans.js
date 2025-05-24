@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Axios_API from '../../Axios_Api';
 import { useNavigate } from 'react-router-dom';
-
+import Head from '../Home/Head';
 const AddTrans = () => {
     
     const navigate = useNavigate();
@@ -40,7 +40,7 @@ const AddTrans = () => {
 
             const res = await Axios_API.addTrns(object);
             if(res.status === "success"){
-                navigate('/');
+                navigate('/trns-list');
             }
         }
       });
@@ -50,6 +50,9 @@ const AddTrans = () => {
       }
 
     return <>
+
+                <Head title="Add New Transaction" subTitle="Easily track your income and expenses by recording a new transaction." />
+
                 <div className='container add-trnx'>
                     <div className='row'><h3>New Transaction</h3></div>       
                     <form onSubmit={formik.handleSubmit}>

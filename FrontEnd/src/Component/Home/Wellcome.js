@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
 import Head from "./Head";
+import { useAuth } from "../../AuthContext";
 
 const Wellcome = () => {
+
+    const { isAuthenticated,setIsAuthenticated, user, setUser} = useAuth();
+
     return <>
         <Head title="Smart Way to Manage Your Money" subTitle="Take control of your finances with ease"/>
         <main>
@@ -46,7 +51,13 @@ const Wellcome = () => {
                 <section className="cta">
                 <h2>👋 Get Started Today</h2>
                 <p>Take charge of your money — it's free and always will be.</p>
-                <button>Start Tracking Now</button>
+                 
+                 { isAuthenticated && (<Link to="/trns-list">Start Tracking Now</Link>) }
+                 { !isAuthenticated && (<div className="wel-btn">
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
+                 </div>) }
+                 
                 </section>
 
             </main>

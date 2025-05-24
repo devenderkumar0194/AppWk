@@ -92,21 +92,34 @@ const logout = async () => {
 
 const getTrns = async () => {
     
-    const res  = await axios.get(baseURL+'/trns-list');
-    return res.data;
+    const token = Cookies.get('token');
+    try {
+
+        const res = await axios.get(baseURL+'/trns-list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+            });
+
+        return res.data;
+
+    } catch (err) {
+        if(err.response.status === 409){
+            return err.response.data;
+        }
+    }
 
 }
 
 const addTrns = async (obj) => {
-    
     try {
-
+        const token = Cookies.get('token');
         const res = await axios.post(
         baseURL+'/add-trns',
         obj,
         {
             headers: {
-            //Authorization: 'Bearer YOUR_TOKEN_HERE',
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
             },
         }

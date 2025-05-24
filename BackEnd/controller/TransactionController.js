@@ -47,8 +47,11 @@ const trnsList = async (req, res) => {
     const limit = parseInt(req.query.limit) || 15;  
     const skip = (page - 1) * limit;
 
+    const totalTrns = await Transaction.find({user : user.id}).countDocuments();
+    const lastPage = Math.ceil( totalTrns/limit);
+    
     const trns = await Transaction.find({user : user.id}).sort({ createdAt: -1 }).skip(skip).limit(limit);
-    return res.status(200).json({ status: "success", data : trns  });
+    return res.status(200).json({ status: "success", lastPage : lastPage, data : trns  });
 
 }
 
