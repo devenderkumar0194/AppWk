@@ -57,10 +57,7 @@ const Login = () => {
     //   }
 
     return <>
-        <Head title="Please Log In to Continue" subTitle="Access your TrackWise dashboard to manage your credits, debits, and balance with ease."/>
-
         <main>
-
             <section>
             <div className="container">
 

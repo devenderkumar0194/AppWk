@@ -35,9 +35,7 @@ const TransList = () => {
     } , []);
 
 
-    return <>
-        <Head title="Transaction List" subTitle="All your credits and debits, clearly organized and always accessible."/>
-        
+    return <>        
         <main>
             <section>
                 <div class="container">

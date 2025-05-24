@@ -50,11 +50,8 @@ const AddTrans = () => {
       }
 
     return <>
-        <Head title="Add New Transaction" subTitle="Easily track your income and expenses by recording a new transaction." />
         <main>
             <div className='container'>
-
-
                     <div class="header">
                         {/* <Link to="/trns-list" class="add-button">Transaction List</Link>             */}
                         <div class="search-box add-trx">

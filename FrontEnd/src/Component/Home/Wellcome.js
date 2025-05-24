@@ -7,7 +7,6 @@ const Wellcome = () => {
     const { isAuthenticated,setIsAuthenticated, user, setUser} = useAuth();
 
     return <>
-        <Head title="Smart Way to Manage Your Money" subTitle="Take control of your finances with ease"/>
         <main>
 
             <section>
