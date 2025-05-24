@@ -5,8 +5,11 @@ import Axios_API from '../../Axios_Api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import Cookies from 'js-cookie';
+import { useAuth } from "../../AuthContext";
 
 const Login = () => {
+
+    const { isAuthenticated,setIsAuthenticated, user, setUser} = useAuth();
 
     const location = useLocation();
     const message = location.state?.message;
@@ -37,10 +40,11 @@ const Login = () => {
             if(res.status === 200){
                 const token = res.data;
                 Cookies.set('token', token, { expires: 1 });
-                
+                setIsAuthenticated(true);
                 navigate('/trns-list');
             }else {
                 setError(res.message);
+                setIsAuthenticated(false);
                 setTimeout(function(){
                     setError("");
                 }, 5000);

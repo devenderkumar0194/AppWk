@@ -30,7 +30,7 @@ const ProtectedRoute = () => {
   }, []);
  
   if(isAuthenticated === null) {
-    return <div>Loading...</div>;
+    // return <div>Loading...</div>;
   }else{
     return isAuthenticated ? <Outlet/> : <Navigate to="/" replace/>;
   }

@@ -8,7 +8,9 @@ const Head = (props) => {
     const navigate = useNavigate();
     
     const logout = async () => {
+
         await AxiosAPI.logout();
+        setIsAuthenticated(false);
         navigate('/login', { state : { message : "Logout successfully"}});
     }
     return <>
