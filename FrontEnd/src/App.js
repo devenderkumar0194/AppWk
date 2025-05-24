@@ -9,6 +9,7 @@ import Login from './Component/Home/Login';
 import Register from './Component/Home/Register';
 import AxiosAPI from './Axios_Api';
 import { useEffect, useState } from 'react';
+import { AuthProvider } from './AuthContext';
 
 
 const ProtectedRoute = () => {
@@ -64,6 +65,7 @@ const PublicRoute = () => {
 function App() {
   return (
     <Router>
+      <AuthProvider>
           <div className="App">
               <Routes>      
                <Route path="/" element={<Wellcome/>} />   
@@ -81,6 +83,7 @@ function App() {
 
               </Routes>
             </div>
+      </AuthProvider>          
     </Router>
 
   );

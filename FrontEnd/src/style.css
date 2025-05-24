@@ -32,6 +32,7 @@
         text-decoration: none;
     }
 
+    
     .nav-buttons a {
       text-decoration: none;
       margin-left: 15px;
@@ -41,6 +42,19 @@
       border-radius: 8px;
       font-weight: 600;
     }
+
+    
+    .nav-buttons button {
+      text-decoration: none;
+      margin-left: 15px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      border: none;
+    }
+
 
     .hero {
       text-align: center;

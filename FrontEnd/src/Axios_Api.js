@@ -124,6 +124,6 @@ const addTrns = async (obj) => {
 
 
 
-const obj = { register, login , getUserDetails,getTrns, addTrns};
+const obj = { register, login , logout, getUserDetails,getTrns, addTrns};
 
 export default obj;

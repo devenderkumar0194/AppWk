@@ -8,6 +8,8 @@ const userMiddleware = require('../middleware/userMiddleware');
 
 apiRouter.post("/register", UserController.register);
 apiRouter.post("/login", UserController.login);
+apiRouter.get("/logout", UserController.logout);
+
 
 apiRouter.post("/add-trns", TransactionController.addTrns);
 apiRouter.get("/trns-list", TransactionController.trnsList);
