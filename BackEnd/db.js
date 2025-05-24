@@ -5,8 +5,6 @@ const db =  (req, res) => {
     const databasePassword = process.env.DATABASE_PASSWORD;
     const databaseName = process.env.DATABASE_NAME;
 
-    console.log(databaseUser,databasePassword, databaseName );
-
     const str = `mongodb+srv://${databaseUser}:${databasePassword}@cluster0.bq09y.mongodb.net/${databaseName}?retryWrites=true&w=majority&appName=Cluster0`;
     
 

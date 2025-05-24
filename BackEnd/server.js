@@ -17,10 +17,6 @@ const path = require('path');
 const portNumber = process.env.PORT || 3000;
 require('./db');
 
-console.log(process.env.STRIPE_SECRET_KEY);
-
-
-
 app.set('view engine', 'ejs');
 
 
