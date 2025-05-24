@@ -42,13 +42,13 @@ const addTrns = async (req, res) => {
 
 const trnsList = async (req, res) => {
     const user = req.user ? req.user : [];
-    const search = req.body.search ? req.body.search : "";
+    const search = req.query.search ? req.query.search : "";
     
     // const startDate = '2024-01-01';
     // const endDate = '2025-12-31';
 
-    const startDate = req.body.startDate ? req.body.startDate : "";
-    const endDate = req.body.endDate ? req.body.endDate : "";
+    const startDate = req.query.startDate ? req.query.startDate : "";
+    const endDate = req.query.endDate ? req.query.endDate : "";
 
 
     const page = parseInt(req.query.page) || 1;      

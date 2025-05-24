@@ -11,14 +11,15 @@ const TransList = () => {
     const [page , setPage] = useState(1);
     const [lastPage, setLastPage] = useState(1);
 
-    const getTrnsList = async (page=1) => {
-        
+    const getTrnsList = async (page=1, event = null) => {
+
+        let search = event?.target?  event.target.value.trim() : "";
         setPage(page);
         if(page > lastPage){
             setPage(lastPage);
         }
 
-        const res = await AXios_Api.getTrns(page);
+        const res = await AXios_Api.getTrns(page, search);
         if(res.status === "success"){
             
             setLastPage(res.lastPage);
@@ -42,7 +43,7 @@ const TransList = () => {
                     <div class="header">
                         <Link to="/add-trans" class="add-button">Add New Transaction</Link>            
                         <div class="search-box">
-                            <input type="text" placeholder="Search description..."/>
+                            <input onChange={(event) => getTrnsList(page, event)} type="text"   placeholder="Search description..."/>
                         </div>
                     </div>
                     

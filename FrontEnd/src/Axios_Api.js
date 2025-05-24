@@ -90,15 +90,26 @@ const logout = async () => {
 
 
 
-const getTrns = async (page = 1) => {
+const getTrns = async (page = 1, search) => {
     
     const token = Cookies.get('token');
     try {
-        const res = await axios.get(baseURL+'/trns-list?page='+page+'&limit=10', {
+
+        var obj = {
+            page : page,
+            limit : 10,
+        }
+
+        if(search){
+            obj.search = search;
+        }
+
+        const res = await axios.get(baseURL+'/trns-list',  {
+            params : obj,
             headers: {
                 Authorization: `Bearer ${token}`
             }
-            });
+        });
 
         return res.data;
 
