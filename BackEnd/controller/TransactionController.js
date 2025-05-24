@@ -50,6 +50,7 @@ const trnsList = async (req, res) => {
     const startDate = req.query.startDate ? req.query.startDate : "";
     const endDate = req.query.endDate ? req.query.endDate : "";
 
+    console.log(startDate, endDate, search);
 
     const page = parseInt(req.query.page) || 1;      
     const limit = parseInt(req.query.limit) || 15;  
@@ -61,9 +62,12 @@ const trnsList = async (req, res) => {
 
     if(search){
         conditonObj.desc = { $regex : search , $options : "i" };
+        console.log("sss");
     }
 
     if(startDate && endDate){
+        console.log("ddd");
+
         conditonObj.createdAt = {
             $gte: new Date(startDate),
             $lte: new Date(endDate)
