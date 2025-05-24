@@ -62,7 +62,7 @@ const Login = () => {
         <main>
 
             <section>
-            <div className="box-100">
+            <div className="container">
 
                 
             <form onSubmit={formik.handleSubmit}>

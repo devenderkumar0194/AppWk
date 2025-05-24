@@ -10,6 +10,7 @@ import Register from './Component/Home/Register';
 import AxiosAPI from './Axios_Api';
 import { useEffect, useState } from 'react';
 import { AuthProvider } from './AuthContext';
+import Loader from './Component/Home/Loader';
 
 
 const ProtectedRoute = () => {
@@ -30,7 +31,8 @@ const ProtectedRoute = () => {
   }, []);
  
   if(isAuthenticated === null) {
-    // return <div>Loading...</div>;
+
+    return <Loader/>;
   }else{
     return isAuthenticated ? <Outlet/> : <Navigate to="/" replace/>;
   }
@@ -54,7 +56,7 @@ const PublicRoute = () => {
   }, []);
  
   if(isAuthenticated === null) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }else{
     return !isAuthenticated ? <Outlet/> : <Navigate to="/trns-list" replace/>;
   }

@@ -2,7 +2,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Axios_API from '../../Axios_Api';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Head from '../Home/Head';
 const AddTrans = () => {
     
@@ -50,85 +50,86 @@ const AddTrans = () => {
       }
 
     return <>
+        <Head title="Add New Transaction" subTitle="Easily track your income and expenses by recording a new transaction." />
+        <main>
+            <div className='container'>
 
-                <Head title="Add New Transaction" subTitle="Easily track your income and expenses by recording a new transaction." />
 
-                <div className='container add-trnx'>
-                    <div className='row'><h3>New Transaction</h3></div>       
+                    <div class="header">
+                        {/* <Link to="/trns-list" class="add-button">Transaction List</Link>             */}
+                        <div class="search-box add-trx">
+                            <Link to="/trns-list" class="add-button">Transaction List</Link>            
+
+                            {/* <input type="text" placeholder="Search description..."/> */}
+                        </div>
+                    </div>
+
+
                     <form onSubmit={formik.handleSubmit}>
-                        <div className='row'>
-                            <div className='col-4'><label>Transaction Type</label></div>
-                            <div className='col-8'>
-                                <div className='form-group'>
-                                    <select className='form-control' name='type'
-                                        value={formik.values.type}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                    >
-                                        <option value="">Select Type</option>
-                                        <option value="1">Credit</option>
-                                        <option value="2">Debit</option>
-                                    </select>
-                                    {formik.touched.type && formik.errors.type && (
-                                    <div style={{ color: 'red' }}>{formik.errors.type}</div>
-                                    )}
-                                </div>
-                                
-                            </div>
+                        <div className='form-group'>
+                            <label>Transaction Type</label>
+                            <select className='form-control' name='type'
+                                value={formik.values.type}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            >
+                                <option value="">Select Type</option>
+                                <option value="1">Credit</option>
+                                <option value="2">Debit</option>
+                            </select>
+                            {formik.touched.type && formik.errors.type && (
+                            <div className='error'>{formik.errors.type}</div>
+                            )}
                         </div>
-                        <div className='row'>
 
-                            <div className='col-4'><label>Amount</label></div>
-                            <div className='col-8'>
-                                <div className='form-group'>
-                                    <input
-                                    autoComplete='off'
-                                    className='form-control'
-                                    type="text"
-                                    name="amount"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.amount}
-                                    />
-                                    {formik.touched.amount && formik.errors.amount && (
-                                    <div style={{ color: 'red' }}>{formik.errors.amount}</div>
-                                    )}
-                                </div>  
-                            </div>
-                        </div>
-                        <div className='row'>
-
-                            <div className='col-4'><label>Description</label></div>
-                            <div className='col-8'>
-                                    <div className='form-group'>
-
-                                        <textarea
-                                            autoComplete='off'
-                                            className='form-control'
-                                            name="desc"
-                                            rows="4"
-                                            onChange={formik.handleChange}
-                                            onBlur={formik.handleBlur}
-                                            value={formik.values.desc}
-                                            />
-
-                                            {formik.touched.desc && formik.errors.desc && (
-                                            <div style={{ color: 'red' }}>{formik.errors.desc}</div>
-                                            )}
-
-                                    </div>
-                            </div>
+                        <div className='form-group'>
+                            <label>Amount</label>
+                            <input
+                                autoComplete='off'
+                                className='form-control'
+                                type="text"
+                                name="amount"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.amount}
+                                />
+                                {formik.touched.amount && formik.errors.amount && (
+                                <div className='error'>{formik.errors.amount}</div>
+                                )}
 
                         </div>
-                        <div className='row'>
 
-                            <div className='from-group add-box'>
-                                <button className='btn btn-primary mx-2' type="submit">Add Transaction</button>
-                                <a className='btn btn-danger' onClick={CancelTransaction}>Cancel</a>
-                            </div>
+                        <div className='form-group'>
+                            <label>Description</label>
+                            <textarea
+                                autoComplete='off'
+                                className='form-control'
+                                name="desc"
+                                rows="4"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.desc}
+                                />
+
+                                {formik.touched.desc && formik.errors.desc && (
+                                <div className='error'>{formik.errors.desc}</div>
+                                )}
                         </div>
+
+                        <div className="form-btn">
+                            <button type="submit" class="login-btn">Add Transaction</button>
+                            <a className='btn btn-danger' onClick={CancelTransaction}>Cancel</a>
+
+                        </div>
+
+
                     </form>
                 </div>
+
+
+
+        </main>
+                
     </>; 
 }
 

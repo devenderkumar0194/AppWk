@@ -70,7 +70,7 @@ const Register = () => {
         <Head title="Create Your Free TrackWise Account" subTitle="Start tracking your income and expenses today, it's simple, fast, and always free."/>
         <main>
             <section>
-            <div className="box-100">
+            <div className="container">
             <form onSubmit={formik.handleSubmit}>
 
                 {message && <div className="success">{message}</div>}

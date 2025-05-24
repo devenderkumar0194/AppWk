@@ -90,12 +90,11 @@ const logout = async () => {
 
 
 
-const getTrns = async () => {
+const getTrns = async (page = 1) => {
     
     const token = Cookies.get('token');
     try {
-
-        const res = await axios.get(baseURL+'/trns-list', {
+        const res = await axios.get(baseURL+'/trns-list?page='+page+'&limit=10', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
