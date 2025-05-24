@@ -142,6 +142,10 @@
         text-align: left;
     }
 
+    .error {
+      color: rgb(200, 77, 77);
+    }
+
 
     .form-group input {
       width: 100%;
@@ -177,6 +181,9 @@
       background-color: #4f46e5;
     }
 
+    .success {
+      color: rgb(28, 176, 28);
+    }
 
 
 

@@ -3,6 +3,32 @@ import Cookies from 'js-cookie';
 
 const baseURL = process.env.REACT_APP_BACK_END_URL+'/api'; 
 
+
+const register = async (obj) => {
+    
+    try {
+
+        const res = await axios.post(
+        baseURL+'/register',
+        obj,
+        {
+            headers: {
+            //Authorization: 'Bearer YOUR_TOKEN_HERE',
+            'Content-Type': 'application/json',
+            },
+        }
+        );
+
+        return res.data;
+    } catch (err) {
+
+        if(err.response.status === 409){
+            return err.response.data;
+        }
+    }
+}
+
+
 const login = async (email, password) => {
 
     const obj =  {
@@ -24,7 +50,6 @@ const login = async (email, password) => {
         );
 
         return res.data;
-
     } catch (err) {
 
         if(err.response.status === 409){
@@ -99,6 +124,6 @@ const addTrns = async (obj) => {
 
 
 
-const obj = { login , getUserDetails,getTrns, addTrns};
+const obj = { register, login , getUserDetails,getTrns, addTrns};
 
 export default obj;

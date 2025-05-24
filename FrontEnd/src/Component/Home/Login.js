@@ -2,13 +2,16 @@ import Head from "./Head";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Axios_API from '../../Axios_Api';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import Cookies from 'js-cookie';
 
 const Login = () => {
 
-    const [error , setError] = useState("");
+    const location = useLocation();
+    const message = location.state?.message;
+
+    const [error , setError] = useState(location.state?.error);
     const navigate = useNavigate();
 
     const initialValues = {
@@ -59,7 +62,9 @@ const Login = () => {
 
                 
             <form onSubmit={formik.handleSubmit}>
-                
+
+                {message && <div className="success">{message}</div>}
+                {error && <div className="error">{error}</div>}
                 <div className="form-group">
                     <div className="error">{error}</div>
                 </div>
